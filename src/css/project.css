@@ -1,0 +1,28 @@
+.project-holder-holder{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 4rem;
+    flex: 1;
+}
+.project-holder{
+    padding: 2rem;
+    gap: 1rem;
+    border: 1px solid #A3A3A3;
+    border-radius: 16px;
+    width: 25vw;
+}
+
+.project-btn-holder{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+.project-img{
+    height: auto;
+    width: 300px;
+}

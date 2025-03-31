@@ -1,0 +1,22 @@
+.contact-holder-holder{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.contact-holder{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    border: 1px solid black;
+    padding: 1.5rem;
+    border-radius: 32px;
+
+}
+.contact-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}

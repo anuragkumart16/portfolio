@@ -1,0 +1,130 @@
+:root {
+  --img-holder-size: 370px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+.nav-ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-ul > li > a {
+  color: black;
+  text-decoration: none;
+  transition: all ease 0.5s;
+}
+.nav-ul > li > a:hover {
+  color:#A3A3A3;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  
+}
+
+.nav-title {
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.section {
+  height: 100vh;
+  padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.centreSection{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hero-div-holder {
+  flex:1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: max-content;
+}
+
+.hero-img-holder {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.my-img {
+  height: var(--img-holder-size);
+  width: var(--img-holder-size);
+  background: rgb(237, 238, 242);
+  background: radial-gradient(
+    circle,
+    rgba(237, 238, 242, 1) 71%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  border-radius: 50%;
+}
+
+.hero-text{
+  padding: 5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.btn-holder{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.btn-active,.btn{
+  padding: 16px;
+  border-radius: 32px;
+  transition: all ease 0.5s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn{
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid black;
+}
+
+.btn:hover{
+  background-color: #353535;
+  color: white;;
+}
+
+.btn-active{
+  background-color: #353535;
+  color: white;
+  border: 1px solid black;
+}
+
+.btn-active:hover{
+  background-color: black;
+}
+
+.icon-holder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.icon{
+  height: 30px ;
+  width: auto;
+  cursor: pointer;
+}
+
