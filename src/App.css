@@ -41,6 +41,7 @@ nav {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  /* height: 90vh; */
 }
 
 .hero-div-holder {
@@ -128,3 +129,33 @@ nav {
   cursor: pointer;
 }
 
+
+@media screen and (max-width: 600px) {
+  .section{
+    padding: 10px;
+    height: fit-content;
+    min-height: 100vh;
+    margin-bottom: 3rem;
+  }
+  nav {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-ul{
+    margin-top: 10px;
+    gap: 1rem;
+  }
+  .hero-div-holder{
+    margin-top: 3rem;
+    flex-direction: column;
+  }
+  .hero-text{
+    margin-top: 3rem;
+    padding: 1rem;
+  }
+  :root {
+    --img-holder-size: 300px;
+  }
+  
+}

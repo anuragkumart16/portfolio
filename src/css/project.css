@@ -3,9 +3,14 @@
     flex-direction: row;
     gap: 2rem;
     padding: 4rem;
-    flex: 1;
+    justify-content: center;
+    align-items: center;
+    /* flex: 1; */
 }
 .project-holder{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     padding: 2rem;
     gap: 1rem;
     border: 1px solid #A3A3A3;
@@ -20,9 +25,22 @@
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
+
   }
 
 .project-img{
-    height: auto;
-    width: 300px;
+    height: 200px;
+    width: auto;
 }
+
+
+@media screen and (max-width: 600px) {
+   .project-holder-holder{
+    padding: 2rem;
+    flex-direction: column;
+   }
+
+   .project-holder{
+    width: 90vw;
+   }
+  }

@@ -10,9 +10,9 @@
 }
 .poppins-regular-noncard {
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
-  font-size: 24px;
+  font-size: 1.3rem;
   transition: all ease 0.5s;
   color: black;
 }
@@ -51,4 +51,8 @@
   font-style: normal;
   color: #555555;
   font-size: 24px;
+}
+
+body{
+  background-color: #ffffff;
 }

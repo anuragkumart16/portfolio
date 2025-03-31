@@ -1,5 +1,6 @@
 .skills-holder-holder{
-    flex: 1;
+    /* flex: 1; */
+    margin-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,3 +34,18 @@
     justify-content: flex-start;
     gap: 1rem;
 }
+
+
+@media screen and (max-width: 600px) {
+   .skills-holder-holder{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   }
+   .skills-holder{
+    padding: 1rem 1rem;
+   }
+   .poppins-regular{
+    font-size: 1.3rem;
+   }
+  }
