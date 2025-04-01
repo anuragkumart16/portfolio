@@ -63,8 +63,8 @@ function App() {
     [
       "project-img/socialpot.png",
       "Socialpot",
-      "https://socialpot.pythonanywhere.com/",
       "https://github.com/anuragkumart16/Socialpot.git",
+      "https://socialpot.pythonanywhere.com/",
     ],
     [
       "project-img/Third.png",
