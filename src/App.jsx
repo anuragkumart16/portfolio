@@ -4,7 +4,35 @@ import "./css/skill.css";
 import "./css/contact.css";
 import "./css/project.css";
 import "./css/about.css";
+import { motion } from "motion/react";
 function App() {
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 600) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
+  React.useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMenuOpen]);
+
   const frontendSkillArray = [
     ["HTML", "Experienced"],
     ["JavaScript", "Experienced"],
@@ -60,21 +88,52 @@ function App() {
             <div className="nav-div poppins-regular nav-title">
               Anurag Kumar Tiwari
             </div>
-            <ul className="nav-ul">
-              <li className="poppins-regular">
-                <a onClick={() => scrollInView(aboutRef)}>About</a>
-              </li>
-              <li className="poppins-regular">
-                <a onClick={() => scrollInView(projectsRef)}>Projects</a>
-              </li>
-              <li className="poppins-regular">
-                <a onClick={() => scrollInView(skillsRef)}>Skills</a>
-              </li>
-              <li className="poppins-regular">
-                <a onClick={() => scrollInView(contactRef)}>Contact</a>
-              </li>
-            </ul>
+            {
+              !isMobile &&(<ul className="nav-ul">
+                <li className="poppins-regular">
+                  <a onClick={() => scrollInView(aboutRef)}>About</a>
+                </li>
+                <li className="poppins-regular">
+                  <a onClick={() => scrollInView(projectsRef)}>Projects</a>
+                </li>
+                <li className="poppins-regular">
+                  <a onClick={() => scrollInView(skillsRef)}>Skills</a>
+                </li>
+                <li className="poppins-regular">
+                  <a onClick={() => scrollInView(contactRef)}>Contact</a>
+                </li>
+              </ul>)
+            }
+            {
+              isMobile && (isMenuOpen?<img src="close-icon.png" className="icon menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} style={{userSelect: "none"}}/>:<img src="menu-icon.png" className="icon menu-icon" style={{userSelect: "none"}} onClick={() => setIsMenuOpen(!isMenuOpen)}/>)
+            }
           </nav>
+          {
+            isMobile &&(isMenuOpen &&(<motion.ul className="mobile-nav-ul" initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 1 }}>
+              <li className="poppins-regular">
+                <a onClick={() => {
+                  setIsMenuOpen(false)
+                  scrollInView(aboutRef)}}>About</a>
+              </li>
+              <li className="poppins-regular">
+                <a onClick={() => {
+                  setIsMenuOpen(false)
+                  scrollInView(projectsRef)}}>Projects</a>
+              </li>
+              <li className="poppins-regular">
+                <a onClick={() => {
+                  setIsMenuOpen(false)
+                  scrollInView(skillsRef)}}>Skills</a>
+              </li>
+              <li className="poppins-regular">
+                <a onClick={() => {
+                  setIsMenuOpen(false)
+                  scrollInView(contactRef)}}>Contact</a>
+              </li>
+            </motion.ul>))
+          }
         </header>
         <div className="hero-div-holder">
           <div className="hero-img-holder">
