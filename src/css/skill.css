@@ -44,8 +44,17 @@
    }
    .skills-holder{
     padding: 1rem 1rem;
+    width: 90vw;
    }
    .poppins-regular{
     font-size: 1.3rem;
+   }
+   .skill-grid{
+    column-gap: 3rem;
+   }
+   .skill{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
    }
   }

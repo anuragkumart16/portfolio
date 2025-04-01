@@ -166,7 +166,7 @@ function App() {
               </div>
             </div>
             <div>
-              <p>
+              <p className="about-desc">
                 I am a MERN Developer skilled in Django and UI/UX design,
                 building user-friendly web and mobile applications. I specialize
                 in PWAs, ONDC-based apps, and bookmarking systems. With a strong

@@ -56,10 +56,14 @@
     }
     .about-card{
         width: auto;
+        margin: 1rem;
     }
     .about-img{
         width: 90vw;
         height: auto;
         margin: 3rem 0rem ;
+    }
+    .about-desc{
+        padding: 1rem;
     }
   }
