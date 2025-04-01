@@ -4,7 +4,10 @@ import "./css/skill.css";
 import "./css/contact.css";
 import "./css/project.css";
 import "./css/about.css";
-import { motion } from "motion/react";
+// import { motion } from "motion/react";
+import { motion } from "framer-motion";
+
+
 function App() {
   const [isMobile, setIsMobile] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -82,8 +85,12 @@ function App() {
 
   return (
     <>
-      <section className="section">
-        <header>
+      <motion.section className="section"
+      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}>
+        <header >
           <nav>
             <div className="nav-div poppins-regular nav-title">
               Anurag Kumar Tiwari
@@ -187,8 +194,15 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
-      <section className="section centreSection" ref={aboutRef}>
+      </motion.section>
+      <motion.section 
+        className="section centreSection" 
+        ref={aboutRef}
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <p className="poppins-semibold">To know more</p>
         <p className="poppins-bold" style={{ fontSize: "48px" }}>
           About
@@ -238,8 +252,15 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
-      <section className="section centreSection" ref={skillsRef}>
+      </motion.section>
+      <motion.section 
+        className="section centreSection" 
+        ref={skillsRef}
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <p className="poppins-semibold">Explore my</p>
         <p className="poppins-bold" style={{ fontSize: "48px" }}>
           Skills
@@ -282,9 +303,16 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="section centreSection" ref={projectsRef}>
+      <motion.section 
+        className="section centreSection" 
+        ref={projectsRef}
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <p className="poppins-semibold">Browse my recent</p>
         <p className="poppins-bold" style={{ fontSize: "48px" }}>
           Projects
@@ -317,9 +345,16 @@ function App() {
             );
           })}
         </div>
-      </section>
+      </motion.section>
 
-      <section className="centreSection" ref={contactRef}>
+      <motion.section 
+        className="centreSection" 
+        ref={contactRef}
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <p className="poppins-semibold">Get in touch</p>
         <p className="poppins-bold" style={{ fontSize: "48px" }}>
           Contact me
@@ -334,7 +369,7 @@ function App() {
               />
               <p className="poppins-regular">
                 <a className="poppins-regular  mobile-anchor" style={{ textDecoration: "none" }} href="https://mail.google.com/mail/?view=cm&to=anuragkumartiwari1604@gmail.com" target="_blank">
-                  {window.innerWidth > 600 ? "anuragkumartiwari1604@gmail.com" : "Email"}
+                {isMobile ? "Email" : "anuragkumartiwari1604@gmail.com"}
                 </a>
               </p>
             </div>
@@ -374,7 +409,7 @@ function App() {
         >
           CopyRight © 2023 Anurag Kumar Tiwari. All Rights Reserved
         </p>
-      </section>
+      </motion.section>
     </>
   );
 }
