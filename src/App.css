@@ -174,5 +174,8 @@ nav {
     gap: 1rem;
     /* box-shadow: 0px 1px 2px 0px; */
   }
+  header{
+    margin-top: 1rem;
+  }
   
 }
