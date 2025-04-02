@@ -326,7 +326,7 @@ function App() {
               <div className="project-holder" key={index}>
                 <img src={project[0]} className="project-img" />
                 <p className="poppins-bold">{project[1]}</p>
-                <p className="poppins-regular" style={{ textAlign: "center" }}>{project[4]}</p>
+                <p className="poppins-regular-noncard" style={{ textAlign: "center" , fontWeight: "300"}}>{project[4]}</p>
                 <div className="project-btn-holder">
                   <button
                     className="btn"
