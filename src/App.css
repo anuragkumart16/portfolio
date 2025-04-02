@@ -189,3 +189,17 @@ nav {
   }
   
 }
+
+@media (min-width: 600px) and (max-width: 1024px) {
+ nav{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ }
+ .my-img{
+  margin-top: 5rem;
+ }
+ .hero-div-holder{
+  flex-direction: column;
+ }
+}

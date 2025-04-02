@@ -59,18 +59,21 @@ function App() {
       "Across Device",
       "https://github.com/AcrossDevice/AcrossDevice.github.io.git",
       "https://acrossdevice.github.io/",
+      'A place where you can store all your files, informations and links in one place.'
     ],
     [
       "project-img/socialpot.png",
       "Socialpot",
       "https://github.com/anuragkumart16/Socialpot.git",
       "https://socialpot.pythonanywhere.com/",
+      'A unified backend for handling authentication and database for multiple projects.'
     ],
     [
       "project-img/Third.png",
       "Across Device",
       "https://github.com/anuragkumart16/Socialpot.git",
       "https://acrossdevice.github.io/",
+      'This is a custom desc given here to check if everything is working or not'
     ],
   ];
 
@@ -323,6 +326,7 @@ function App() {
               <div className="project-holder" key={index}>
                 <img src={project[0]} className="project-img" />
                 <p className="poppins-bold">{project[1]}</p>
+                <p className="poppins-regular" style={{ textAlign: "center" }}>{project[4]}</p>
                 <div className="project-btn-holder">
                   <button
                     className="btn"

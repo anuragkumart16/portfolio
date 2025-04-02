@@ -67,3 +67,20 @@
         padding: 1rem;
     }
   }
+
+  @media (min-width: 600px) and (max-width: 1024px) {
+    .about-holder-holder{
+        flex-direction: column;
+        max-height: fit-content;
+    }
+    .about-holder{
+        max-width: fit-content;
+    }
+    .about-img{
+        width: 70vw;
+        height: auto;
+    }
+    .section{
+        height: fit-content;
+    }
+   }

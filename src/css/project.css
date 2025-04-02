@@ -44,3 +44,19 @@
     width: 90vw;
    }
   }
+  @media (min-width: 600px) and (max-width: 1024px) {
+    .project-holder-holder{
+        display: grid;
+        padding: 2rem;
+        grid-template-columns: repeat(2,1fr);
+    }
+    .project-holder{
+        width: 40vw;
+
+    }
+    .section{
+        height:fit-content;
+        
+    }
+    
+   }
