@@ -70,10 +70,10 @@ function App() {
     ],
     [
       "project-img/Third.png",
-      "Across Device",
-      "https://github.com/anuragkumart16/Socialpot.git",
-      "https://acrossdevice.github.io/",
-      'This is a custom desc given here to check if everything is working or not'
+      "Bhoolekh",
+      "https://github.com/anuragkumart16/Bhoolekh.git",
+      "https://bhoolekh.vercel.app/",
+      'Machine Learning Project for Estimation of the Price of a House in Bengaluru.'
     ],
   ];
 
@@ -315,6 +315,7 @@ function App() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
+        style={{marginBottom: "2rem"}}
       >
         <p className="poppins-semibold">Browse my recent</p>
         <p className="poppins-bold" style={{ fontSize: "48px" }}>
