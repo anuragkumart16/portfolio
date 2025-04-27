@@ -154,7 +154,7 @@ function App() {
             <p className="poppins-bold">
               Anurag Kumar <br /> Tiwari
             </p>
-            <p className="poppins-hehe">Full Stack Web Developer</p>
+            <p className="poppins-hehe">Full Stack Web And ML Developer</p>
             <div className="btn-holder">
               <button
                 className="btn"
@@ -244,8 +244,7 @@ function App() {
             <div>
               <p className="about-desc">
                 I am a MERN Developer skilled in Django and UI/UX design,
-                building user-friendly web and mobile applications. I specialize
-                in PWAs, ONDC-based apps, and bookmarking systems. With a strong
+                building user-friendly web and mobile applications. I have created multiple FullStack web apps and currently Learning Machine Learning. With a strong
                 problem-solving mindset, I actively refine my DSA skills and
                 explore edge cases.
                 <br /> Beyond coding, I am a passionate singer, performing at
