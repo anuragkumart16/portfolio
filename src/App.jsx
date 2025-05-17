@@ -158,13 +158,16 @@ function App() {
             <div className="btn-holder">
               <button
                 className="btn"
+                // onClick={() => {
+                //   const link = document.createElement("a");
+                //   link.href = "/Resume-Anurag Kumar Tiwari.pdf"; // File path inside the public folder
+                //   link.download = "Anurag_Resume.pdf"; // Optional: Rename file on download
+                //   document.body.appendChild(link);
+                //   link.click();
+                //   document.body.removeChild(link);
+                // }}
                 onClick={() => {
-                  const link = document.createElement("a");
-                  link.href = "/Resume-Anurag Kumar Tiwari.pdf"; // File path inside the public folder
-                  link.download = "Anurag_Resume.pdf"; // Optional: Rename file on download
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
+                  window.open("https://my.newtonschool.co/template/user/anuragkt16/resume/", "_blank");
                 }}
               >
                 Download CV
