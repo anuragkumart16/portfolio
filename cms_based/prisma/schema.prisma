@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Hero {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  subtitle  String?
+  tone      String   @default("neutral") // neutral, technical, narrative
+  isVisible Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+}
+
+model Story {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  isVisible Boolean    @default(true)
+  tabs      StoryTab[]
+  updatedAt DateTime   @updatedAt
+}
+
+type StoryTab {
+  id        String
+  title     String
+  content   String
+  isVisible Boolean @default(true)
+}
+
+model Skill {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  category    String
+  isCore      Boolean  @default(false)
+  isVisible   Boolean  @default(true)
+  description String?
+  order       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  linkLive    String?
+  linkRepo    String?
+  audiences   String[] // general, company, freelance
+  isVisible   Boolean  @default(true)
+  order       Int      @default(0)
+  draftNotes  String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  clientName  String
+  content     String
+  role        String?
+  company     String?
+  isVisible   Boolean  @default(true)
+  draftNotes  String?
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactSubmission {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  message   String?
+  meta      Json?
+  createdAt DateTime @default(now())
+}
