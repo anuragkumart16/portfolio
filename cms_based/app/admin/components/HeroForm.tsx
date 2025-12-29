@@ -16,11 +16,11 @@ interface HeroFormProps {
 }
 
 export default function HeroForm({ initialData }: HeroFormProps) {
-    const [state, formAction, isPending] = useActionState(updateHero, null);
+    const [state, updateAction, updatePending] = useActionState(updateHero, null);
     const [deleteState, deleteAction, deletePending] = useActionState(deleteHero, null);
 
     return (
-        <form action={formAction} className="space-y-6">
+        <form action={updateAction} className="space-y-6">
             {initialData?.id && <input type="hidden" name="id" value={initialData.id} />}
 
             <div>
@@ -76,18 +76,19 @@ export default function HeroForm({ initialData }: HeroFormProps) {
             <div className="pt-4 flex gap-2">
                 <button
                     type="submit"
-                    disabled={isPending}
+                    disabled={updatePending}
+                    formAction={updateAction}
                     className="px-6 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
                 >
-                    {isPending ? "Saving..." : "Save Changes"}
+                    {updatePending ? "Saving..." : "Save Changes"}
                 </button>
                 <button
-                    type="button"
-                    disabled={isPending}
-                    onClick={()=>deleteAction(initialData?.id as string)}
+                    type="submit"
+                    disabled={deletePending}
+                    formAction={deleteAction}
                     className="px-6 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
                 >
-                    {isPending ? "Deleting..." : "Delete"}
+                    {deletePending ? "Deleting..." : "Delete"}
                 </button>
             </div>
 
