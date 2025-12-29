@@ -14,7 +14,7 @@ export default async function HeroEditor() {
     return (
         <div>
             <div>
-                <h1 className="text-2xl font-bold">Create Hero</h1>
+                <h1 className="text-2xl font-bold">Create a new Hero</h1>
                 <HeroForm initialData={null}/>
             </div>
             <div className="mt-4 flex flex-col gap-4"> 

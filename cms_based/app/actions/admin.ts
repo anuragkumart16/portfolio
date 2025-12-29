@@ -9,8 +9,6 @@ export async function updateHero(prevState: any, formData: FormData) {
     const isVisible = formData.get("isVisible") === "on";
     const id = formData.get("id") as string; // if exist
 
-    console.log({title,subtitle,isVisible,id})
-
     try {
         if (id) {
             await prisma.hero.update({
