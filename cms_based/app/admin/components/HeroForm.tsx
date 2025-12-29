@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { updateHero } from "@/app/actions/admin";
+import { updateHero, deleteHero } from "@/app/actions/admin";
 import { cn } from "@/app/lib/utils";
 
 interface HeroFormProps {
@@ -11,11 +11,13 @@ interface HeroFormProps {
         subtitle: string | null;
         tone: string;
         isVisible: boolean;
+        audience: string;
     } | null;
 }
 
 export default function HeroForm({ initialData }: HeroFormProps) {
     const [state, formAction, isPending] = useActionState(updateHero, null);
+    const [deleteState, deleteAction, deletePending] = useActionState(deleteHero, null);
 
     return (
         <form action={formAction} className="space-y-6">
@@ -50,6 +52,14 @@ export default function HeroForm({ initialData }: HeroFormProps) {
                 />
             </div>
 
+            <div>
+                <select name="audience" value={initialData?.audience || "company"}>
+                    <option value="company">Company</option>
+                    <option value="freelance">Freelance</option>
+                    <option value="general">General</option>
+                </select>
+            </div>
+
             <div className="flex items-center gap-2">
                 <input
                     type="checkbox"
@@ -63,13 +73,21 @@ export default function HeroForm({ initialData }: HeroFormProps) {
                 </label>
             </div>
 
-            <div className="pt-4">
+            <div className="pt-4 flex gap-2">
                 <button
                     type="submit"
                     disabled={isPending}
                     className="px-6 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
                 >
                     {isPending ? "Saving..." : "Save Changes"}
+                </button>
+                <button
+                    type="button"
+                    disabled={isPending}
+                    onClick={()=>deleteAction(initialData?.id as string)}
+                    className="px-6 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
+                >
+                    {isPending ? "Deleting..." : "Delete"}
                 </button>
             </div>
 
@@ -78,6 +96,12 @@ export default function HeroForm({ initialData }: HeroFormProps) {
             )}
             {state?.success === false && (
                 <p className="text-red-600 dark:text-red-400 text-sm">{state.message}</p>
+            )}
+            {deleteState?.success && (
+                <p className="text-green-600 dark:text-green-400 text-sm">{deleteState.message}</p>
+            )}
+            {deleteState?.success === false && (
+                <p className="text-red-600 dark:text-red-400 text-sm">{deleteState.message}</p>
             )}
         </form>
     );

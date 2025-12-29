@@ -7,6 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Audience {
+  general
+  company
+  freelance
+}
+
 model Hero {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String
@@ -14,6 +20,7 @@ model Hero {
   tone      String   @default("neutral") // neutral, technical, narrative
   isVisible Boolean  @default(true)
   updatedAt DateTime @updatedAt
+  audience  Audience @default(general)
 }
 
 model Story {
@@ -55,14 +62,14 @@ model Project {
 }
 
 model Testimonial {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  clientName  String
-  content     String
-  role        String?
-  company     String?
-  isVisible   Boolean  @default(true)
-  draftNotes  String?
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  clientName String
+  content    String
+  role       String?
+  company    String?
+  isVisible  Boolean  @default(true)
+  draftNotes String?
+  updatedAt  DateTime @updatedAt
 }
 
 model ContactSubmission {

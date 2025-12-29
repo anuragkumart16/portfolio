@@ -8,6 +8,8 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Audience } from "./types";
 import { AudienceSyncer } from "./components/AudienceSyncer";
+import Navbar from "./components/ui/Navbar";
+
 
 export default async function Home({
   searchParams,
@@ -27,9 +29,9 @@ export default async function Home({
     <main className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans">
       {/* Sync URL audience to Context for Client Components */}
       <AudienceSyncer audience={audience} />
-
+      <Navbar audience={audience}/>
       <Suspense fallback={<HeroSkeleton />}>
-        <Hero />
+        <Hero audience={audience} />
       </Suspense>
       <Suspense fallback={<StorySkeleton />}>
         {/* StorySection takes audience from Context internally via Client Comp, or we pass it? 
