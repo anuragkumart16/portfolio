@@ -52,8 +52,41 @@ export default function HeroForm({ initialData }: HeroFormProps) {
                 />
             </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label htmlFor="githubUrl" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+                        GitHub URL
+                    </label>
+                    <input
+                        type="text"
+                        name="githubUrl"
+                        id="githubUrl"
+                        defaultValue={(initialData as any)?.githubUrl || ""}
+                        className="w-full px-4 py-2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700"
+                        placeholder="https://github.com/..."
+                    />
+                </div>
+                <div>
+                    <label htmlFor="resumeUrl" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+                        Resume / CV URL
+                    </label>
+                    <input
+                        type="text"
+                        name="resumeUrl"
+                        id="resumeUrl"
+                        defaultValue={(initialData as any)?.resumeUrl || ""}
+                        className="w-full px-4 py-2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700"
+                        placeholder="https://..."
+                    />
+                </div>
+            </div>
+
             <div>
-                <select name="audience" value={initialData?.audience || "company"}>
+                <select
+                    name="audience"
+                    defaultValue={initialData?.audience || "company"}
+                    className="w-full px-4 py-2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700"
+                >
                     <option value="company">Company</option>
                     <option value="freelance">Freelance</option>
                     <option value="general">General</option>

@@ -117,7 +117,7 @@ export default function ProjectsDisplay({ section }: ProjectsDisplayProps) {
                                             {project.techStack.map(tech => (
                                                 <span
                                                     key={tech}
-                                                    className="px-3 py-1 text-xs font-semibold tracking-wider uppercase text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900 rounded-md"
+                                                    className="px-3 py-1 text-xs font-semibold tracking-wider uppercase text-neutral-600 dark:text-neutral-400 bg-neutral-300 dark:bg-neutral-900 rounded-md"
                                                 >
                                                     {tech}
                                                 </span>
@@ -132,7 +132,7 @@ export default function ProjectsDisplay({ section }: ProjectsDisplayProps) {
                                                     href={project.liveUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-semibold text-sm transition-all duration-300 hover:opacity-90 hover:translate-x-1"
+                                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 dark:bg-neutral-300 text-white dark:text-neutral-900 font-semibold text-sm transition-all duration-300 hover:opacity-90 hover:translate-x-1"
                                                 >
                                                     Live Demo
                                                     <ArrowRight size={16} />

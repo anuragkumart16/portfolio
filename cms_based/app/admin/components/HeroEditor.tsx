@@ -1,5 +1,5 @@
 import { prisma } from "@/app/lib/prisma";
-import {createHero} from "@/app/actions/admin"
+import { createHero } from "@/app/actions/admin"
 import HeroForm from "./HeroForm";
 import { div } from "framer-motion/client";
 
@@ -15,11 +15,11 @@ export default async function HeroEditor() {
         <div>
             <div>
                 <h1 className="text-2xl font-bold">Create a new Hero</h1>
-                <HeroForm initialData={null}/>
+                <HeroForm initialData={null} />
             </div>
-            <div className="mt-4 flex flex-col gap-4"> 
+            <div className="mt-4 flex flex-col gap-4">
                 {hero.map((hero) => (
-                    <div className="p-4 border border-neutral-200 dark:border-neutral-800"><HeroForm key={hero.id} initialData={hero} /></div>
+                    <div key={hero.id} className="p-4 border border-neutral-200 dark:border-neutral-800"><HeroForm initialData={hero} /></div>
                 ))}
             </div>
         </div>

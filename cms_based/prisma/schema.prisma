@@ -19,8 +19,23 @@ model Hero {
   subtitle  String?
   tone      String   @default("neutral") // neutral, technical, narrative
   isVisible Boolean  @default(true)
+  githubUrl String?
+  resumeUrl String?
   updatedAt DateTime @updatedAt
   audience  Audience @default(general)
+}
+
+// ... existing Story, Skills, etc.
+
+model ContactSection {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  isVisible     Boolean  @default(true)
+  title         String   @default("Get in touch")
+  subtitle      String   @default("Have a project in mind or just want to say hi?")
+  description   String?
+  receiverEmail String   @default("anurag.tiwari@example.com")
+  socialLinks   Json?
+  updatedAt     DateTime @updatedAt
 }
 
 model Story {
@@ -75,7 +90,7 @@ type ProjectItem {
   title       String
   description String
   images      String[]
-  techStack   String[] 
+  techStack   String[]
   liveUrl     String?
   repoUrl     String?
   audiences   Audience[]
@@ -110,15 +125,6 @@ model Testimonial {
   isVisible  Boolean  @default(true)
   draftNotes String?
   updatedAt  DateTime @updatedAt
-}
-
-model ContactSection {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  isVisible     Boolean  @default(true)
-  title         String   @default("Get in touch")
-  subtitle      String   @default("Have a project in mind or just want to say hi?")
-  receiverEmail String   @default("anurag.tiwari@example.com")
-  updatedAt     DateTime @updatedAt
 }
 
 model ContactSubmission {

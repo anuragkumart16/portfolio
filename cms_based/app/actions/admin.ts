@@ -7,17 +7,31 @@ export async function updateHero(prevState: any, formData: FormData) {
     const title = formData.get("title") as string;
     const subtitle = formData.get("subtitle") as string;
     const isVisible = formData.get("isVisible") === "on";
+    const githubUrl = formData.get("githubUrl") as string;
+    const resumeUrl = formData.get("resumeUrl") as string;
     const id = formData.get("id") as string; // if exist
 
     try {
         if (id) {
             await prisma.hero.update({
                 where: { id },
-                data: { title, subtitle, isVisible }
+                data: {
+                    title,
+                    subtitle: subtitle || undefined,
+                    isVisible,
+                    githubUrl: githubUrl || undefined,
+                    resumeUrl: resumeUrl || undefined
+                }
             });
         } else {
             await prisma.hero.create({
-                data: { title, subtitle, isVisible }
+                data: {
+                    title,
+                    subtitle: subtitle || undefined,
+                    isVisible,
+                    githubUrl: githubUrl || undefined,
+                    resumeUrl: resumeUrl || undefined
+                }
             });
         }
 
@@ -51,10 +65,12 @@ export async function createHero(formData: FormData) {
     const subtitle = formData.get("subtitle") as string;
     const isVisible = formData.get("isVisible") === "on";
     const audience = formData.get("audience") as "company" | "freelance" | "general";
+    const githubUrl = formData.get("githubUrl") as string;
+    const resumeUrl = formData.get("resumeUrl") as string;
 
     try {
         await prisma.hero.create({
-            data: { title, subtitle, isVisible, audience }
+            data: { title, subtitle, isVisible, audience, githubUrl, resumeUrl }
         });
 
         revalidatePath("/");
@@ -203,5 +219,57 @@ export async function updateTestimonials(prevState: any, formData: FormData) {
     } catch (error) {
         console.error("Update testimonials error:", error);
         return { success: false, message: "Failed to update testimonials" };
+    }
+}
+
+export async function updateContact(prevState: any, formData: FormData) {
+    const isVisible = formData.get("isVisible") === "on";
+    const title = formData.get("title") as string;
+    const subtitle = formData.get("subtitle") as string;
+    const description = formData.get("description") as string;
+    const receiverEmail = formData.get("receiverEmail") as string;
+    const socialLinksJson = formData.get("socialLinks") as string;
+
+    let socialLinks = [];
+    try {
+        socialLinks = JSON.parse(socialLinksJson);
+    } catch (e) {
+        console.error("Failed to parse socialLinks JSON", e);
+        return { success: false, message: "Invalid socialLinks data" };
+    }
+
+    try {
+        const existing = await prisma.contactSection.findFirst();
+
+        if (existing) {
+            await prisma.contactSection.update({
+                where: { id: existing.id },
+                data: {
+                    isVisible,
+                    title,
+                    subtitle,
+                    description: description || null,
+                    receiverEmail,
+                    socialLinks: socialLinks as any
+                }
+            });
+        } else {
+            await prisma.contactSection.create({
+                data: {
+                    isVisible,
+                    title,
+                    subtitle,
+                    description: description || null,
+                    receiverEmail,
+                    socialLinks: socialLinks as any
+                }
+            });
+        }
+
+        revalidatePath("/");
+        return { success: true, message: "Contact updated successfully" };
+    } catch (error) {
+        console.error("Update contact error:", error);
+        return { success: false, message: "Failed to update contact" };
     }
 }

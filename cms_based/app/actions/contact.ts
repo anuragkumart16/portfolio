@@ -4,6 +4,7 @@ import { prisma } from "../lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function submitContactForm(prevState: any, formData: FormData) {
+    const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const message = formData.get("message") as string;
     // Add logic to save to DB and send email
@@ -22,6 +23,8 @@ export async function submitContactForm(prevState: any, formData: FormData) {
     try {
         await prisma.contactSubmission.create({
             data: {
+                // @ts-ignore
+                name: name || "Anonymous",
                 email,
                 message,
                 status: 'unread'
@@ -94,7 +97,19 @@ export async function updateContactSettings(prevState: any, formData: FormData) 
     const isVisible = formData.get("isVisible") === "on";
     const title = formData.get("title") as string;
     const subtitle = formData.get("subtitle") as string;
+    const description = formData.get("description") as string;
     const receiverEmail = formData.get("receiverEmail") as string;
+    const socialLinksJson = formData.get("socialLinks") as string;
+
+    let socialLinks = [];
+    try {
+        if (socialLinksJson) {
+            socialLinks = JSON.parse(socialLinksJson);
+        }
+    } catch (e) {
+        console.error("Failed to parse socialLinks JSON", e);
+        return { success: false, message: "Invalid socialLinks data" };
+    }
 
     try {
         const existing = await prisma.contactSection.findFirst();
@@ -102,11 +117,25 @@ export async function updateContactSettings(prevState: any, formData: FormData) 
         if (existing) {
             await prisma.contactSection.update({
                 where: { id: existing.id },
-                data: { isVisible, title, subtitle, receiverEmail }
+                data: {
+                    isVisible,
+                    title,
+                    subtitle,
+                    description: description || null,
+                    receiverEmail,
+                    socialLinks: socialLinks as any
+                }
             });
         } else {
             await prisma.contactSection.create({
-                data: { isVisible, title, subtitle, receiverEmail }
+                data: {
+                    isVisible,
+                    title,
+                    subtitle,
+                    description: description || null,
+                    receiverEmail,
+                    socialLinks: socialLinks as any
+                }
             });
         }
 

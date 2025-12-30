@@ -21,7 +21,7 @@ export default async function Hero({ audience }: { audience: Audience }) {
 
     return (
         <section id="hero" className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden">
-            <div className="absolute inset-0 w-full h-full opacity-50 dark:opacity-100">
+            <div className="absolute inset-0 w-full h-full opacity-50 dark:opacity-100 hidden md:block">
                 <Threads
                     amplitude={1}
                     distance={0}
@@ -51,6 +51,29 @@ export default async function Hero({ audience }: { audience: Audience }) {
                         </h1>
                     </div>
                 )}
+
+                <div className="flex flex-wrap gap-4 animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100">
+                    {hero?.resumeUrl && (
+                        <a
+                            href={hero.resumeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-8 py-3 rounded-full bg-neutral-900 dark:bg-neutral-300 text-white dark:text-neutral-900 font-medium hover:opacity-90 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-neutral-500/20 dark:shadow-neutral-900/40"
+                        >
+                            Download CV
+                        </a>
+                    )}
+                    {hero?.githubUrl && (
+                        <a
+                            href={hero.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-8 py-3 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all hover:scale-105 active:scale-95 backdrop-blur-sm bg-white/30 dark:bg-neutral-900/30"
+                        >
+                            GitHub
+                        </a>
+                    )}
+                </div>
             </div>
         </section>
     );
