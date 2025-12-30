@@ -136,3 +136,37 @@ export async function updateSkills(prevState: any, formData: FormData) {
         return { success: false, message: "Failed to update skills" };
     }
 }
+
+export async function updateProjects(prevState: any, formData: FormData) {
+    const isVisible = formData.get("isVisible") === "on";
+    const projectsJson = formData.get("projects") as string;
+
+    let projects = [];
+    try {
+        projects = JSON.parse(projectsJson);
+    } catch (e) {
+        console.error("Failed to parse projects JSON", e);
+        return { success: false, message: "Invalid projects data" };
+    }
+
+    try {
+        const existing = await prisma.projectsSection.findFirst();
+
+        if (existing) {
+            await prisma.projectsSection.update({
+                where: { id: existing.id },
+                data: { isVisible, projects }
+            });
+        } else {
+            await prisma.projectsSection.create({
+                data: { isVisible, projects }
+            });
+        }
+
+        revalidatePath("/");
+        return { success: true, message: "Projects updated successfully" };
+    } catch (error) {
+        console.error("Update projects error:", error);
+        return { success: false, message: "Failed to update projects" };
+    }
+}

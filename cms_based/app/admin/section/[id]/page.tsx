@@ -4,6 +4,7 @@ import Link from "next/link";
 import HeroEditor from "../../components/HeroEditor";
 import StoryEditor from "../../components/StoryEditor";
 import SkillsEditor from "../../components/SkillsEditor";
+import ProjectsEditor from "../../components/ProjectsEditor";
 // ... others
 
 export default async function SectionPage({
@@ -44,7 +45,8 @@ export default async function SectionPage({
                 {id === 'hero' && <HeroEditor />}
                 {id === 'story' && <StoryEditor />}
                 {id === 'skills' && <SkillsEditor />}
-                {(id !== 'hero' && id !== 'story' && id !== 'skills') && (
+                {id === 'projects' && <ProjectsEditor />}
+                {(id !== 'hero' && id !== 'story' && id !== 'skills' && id !== 'projects') && (
                     <p className="text-neutral-500 italic">Editor for {name} is under construction.</p>
                 )}
             </div>

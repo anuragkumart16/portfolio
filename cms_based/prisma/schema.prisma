@@ -81,6 +81,7 @@ type ProjectItem {
   repoUrl     String?
   audiences   Audience[]
   isVisible   Boolean    @default(true)
+  useIframe   Boolean    @default(false)
 }
 
 model Testimonial {
