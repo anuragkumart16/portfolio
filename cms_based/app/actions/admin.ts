@@ -102,3 +102,37 @@ export async function updateStory(prevState: any, formData: FormData) {
         return { success: false, message: "Failed to update story" };
     }
 }
+
+export async function updateSkills(prevState: any, formData: FormData) {
+    const isVisible = formData.get("isVisible") === "on";
+    const categoriesJson = formData.get("categories") as string;
+
+    let categories = [];
+    try {
+        categories = JSON.parse(categoriesJson);
+    } catch (e) {
+        console.error("Failed to parse categories JSON", e);
+        return { success: false, message: "Invalid categories data" };
+    }
+
+    try {
+        const existing = await prisma.skillsSection.findFirst();
+
+        if (existing) {
+            await prisma.skillsSection.update({
+                where: { id: existing.id },
+                data: { isVisible, categories }
+            });
+        } else {
+            await prisma.skillsSection.create({
+                data: { isVisible, categories }
+            });
+        }
+
+        revalidatePath("/");
+        return { success: true, message: "Skills updated successfully" };
+    } catch (error) {
+        console.error("Update skills error:", error);
+        return { success: false, message: "Failed to update skills" };
+    }
+}

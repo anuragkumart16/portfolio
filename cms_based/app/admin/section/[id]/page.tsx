@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import HeroEditor from "../../components/HeroEditor";
 import StoryEditor from "../../components/StoryEditor";
+import SkillsEditor from "../../components/SkillsEditor";
 // ... others
 
 export default async function SectionPage({
@@ -42,7 +43,8 @@ export default async function SectionPage({
                 {/* Render specific editor based on ID */}
                 {id === 'hero' && <HeroEditor />}
                 {id === 'story' && <StoryEditor />}
-                {(id !== 'hero' && id !== 'story') && (
+                {id === 'skills' && <SkillsEditor />}
+                {(id !== 'hero' && id !== 'story' && id !== 'skills') && (
                     <p className="text-neutral-500 italic">Editor for {name} is under construction.</p>
                 )}
             </div>
