@@ -67,12 +67,15 @@ export default function ProjectsDisplay({ section }: ProjectsDisplayProps) {
                             <div className={`relative rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:scale-[1.02] ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                                 <div className="aspect-[16/10] bg-neutral-100 dark:bg-neutral-900 relative">
                                     {project.useIframe && project.liveUrl ? (
-                                        <iframe
-                                            src={project.liveUrl}
-                                            title={project.title}
-                                            className="absolute inset-0 w-full h-full border-0"
-                                            loading="lazy"
-                                        />
+                                        <div className="absolute inset-0 w-[400%] h-[400%] origin-top-left scale-[0.25] bg-white">
+                                            <iframe
+                                                src={project.liveUrl}
+                                                title={project.title}
+                                                className="w-full h-full border-0"
+                                                loading="lazy"
+                                                style={{ pointerEvents: 'none' }}
+                                            />
+                                        </div>
                                     ) : mainImage ? (
                                         <>
                                             <Image

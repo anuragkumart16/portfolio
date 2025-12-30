@@ -38,7 +38,8 @@ export default function ProjectsForm({ initialData }: ProjectsFormProps) {
                 images: p.images || [],
                 techStack: p.techStack || [],
                 liveUrl: p.liveUrl || '',
-                repoUrl: p.repoUrl || ''
+                repoUrl: p.repoUrl || '',
+                useIframe: p.useIframe || false
             })));
         }
     }, [initialData]);
@@ -215,6 +216,18 @@ export default function ProjectsForm({ initialData }: ProjectsFormProps) {
                                         className="w-full px-3 py-1.5 text-sm rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-950"
                                         placeholder="https://example.com/image.png"
                                     />
+                                    <div className="mt-2 flex items-center gap-2">
+                                        <input
+                                            type="checkbox"
+                                            id={`iframe-${project.id}`}
+                                            checked={project.useIframe}
+                                            onChange={(e) => updateProject(project.id, 'useIframe', e.target.checked)}
+                                            className="w-4 h-4 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900"
+                                        />
+                                        <label htmlFor={`iframe-${project.id}`} className="text-xs text-neutral-600 dark:text-neutral-400">
+                                            Use Live URL as Embed Preview (if no image or preferred)
+                                        </label>
+                                    </div>
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-neutral-500 mb-1">Audience Visibility</label>
