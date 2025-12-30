@@ -1,11 +1,42 @@
+'use client';
+
 import Link from "next/link";
-import { LayoutDashboard, FileText, Users, Eye } from "lucide-react";
+import { LayoutDashboard, FileText, Users, Eye, LogOut } from "lucide-react";
+import { useAuth } from "@/app/context/AuthProvider";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    const { isAuth, isLoading, logout } = useAuth();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!isLoading && !isAuth) {
+            router.push('/auth');
+        }
+    }, [isAuth, isLoading, router]);
+
+    // Show loading state while checking authentication
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-900 dark:border-neutral-100"></div>
+                    <p className="mt-4 text-neutral-600 dark:text-neutral-400">Loading...</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Don't render admin content if not authenticated
+    if (!isAuth) {
+        return null;
+    }
+
     return (
         <div className="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex">
             {/* Sidebar */}
@@ -53,17 +84,29 @@ export default function AdminLayout({
                         Freelance Audience
                     </Link>
                 </nav>
-                <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
+                <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 space-y-2">
                     <Link href="/" className="flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100">
                         <Eye size={16} /> View Production
                     </Link>
+                    <button
+                        onClick={logout}
+                        className="w-full flex items-center gap-2 text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
+                    >
+                        <LogOut size={16} /> Logout
+                    </button>
                 </div>
             </aside>
 
             {/* Main Content */}
             <main className="flex-1 overflow-y-auto">
-                <header className="h-16 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800 md:hidden flex items-center px-4">
+                <header className="h-16 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800 md:hidden flex items-center justify-between px-4">
                     <span className="font-bold">Admin</span>
+                    <button
+                        onClick={logout}
+                        className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400"
+                    >
+                        <LogOut size={16} /> Logout
+                    </button>
                 </header>
                 <div className="p-8 max-w-5xl mx-auto">
                     {children}

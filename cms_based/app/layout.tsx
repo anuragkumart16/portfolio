@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AudienceProvider } from "./context/audience-context";
+import { AuthProvider } from "./context/AuthProvider";
 import OfflineBanner from "./components/OfflineBanner";
 
 const geistSans = Geist({
@@ -27,10 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <AudienceProvider>
-          {children}
-          <OfflineBanner />
-        </AudienceProvider>
+        <AuthProvider>
+          <AudienceProvider>
+            {children}
+            <OfflineBanner />
+          </AudienceProvider>
+        </AuthProvider>
       </body>
     </html>
   );
