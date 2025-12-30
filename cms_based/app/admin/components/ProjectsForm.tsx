@@ -10,8 +10,8 @@ interface ProjectItem {
     description: string;
     images: string[];
     techStack: string[];
-    liveUrl: string;
-    repoUrl: string;
+    liveUrl: string | null;
+    repoUrl: string | null;
     audiences: string[];
     isVisible: boolean;
     useIframe: boolean;
@@ -177,7 +177,7 @@ export default function ProjectsForm({ initialData }: ProjectsFormProps) {
                                         <label className="block text-xs font-medium text-neutral-500 mb-1">Live URL</label>
                                         <input
                                             type="text"
-                                            value={project.liveUrl}
+                                            value={project.liveUrl || ''}
                                             onChange={(e) => updateProject(project.id, 'liveUrl', e.target.value)}
                                             className="w-full px-3 py-1.5 text-sm rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-950"
                                             placeholder="https://..."
@@ -187,7 +187,7 @@ export default function ProjectsForm({ initialData }: ProjectsFormProps) {
                                         <label className="block text-xs font-medium text-neutral-500 mb-1">Repo URL</label>
                                         <input
                                             type="text"
-                                            value={project.repoUrl}
+                                            value={project.repoUrl || ''}
                                             onChange={(e) => updateProject(project.id, 'repoUrl', e.target.value)}
                                             className="w-full px-3 py-1.5 text-sm rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-950"
                                             placeholder="https://github.com/..."
