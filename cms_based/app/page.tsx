@@ -45,7 +45,7 @@ export default async function Home({
         <Skills />
       </Suspense>
       <Suspense fallback={<ProjectsSkeleton />}>
-        <Projects audience={audience} />
+        <Projects />
       </Suspense>
       <Suspense fallback={<TestimonialsSkeleton />}>
         <Testimonials />
