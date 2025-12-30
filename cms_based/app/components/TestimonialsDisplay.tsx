@@ -43,7 +43,7 @@ export default function TestimonialsDisplay({ section }: TestimonialsDisplayProp
     // const marqueeItems = [...visibleTestimonials, ...visibleTestimonials, ...visibleTestimonials]; // Unused
 
     return (
-        <section className="py-24 overflow-hidden bg-white dark:bg-black  dark:border-neutral-800">
+        <section id="testimonials" className="py-16 md:py-24 overflow-hidden bg-white dark:bg-black  dark:border-neutral-800">
             <div className="max-w-7xl mx-auto px-4 mb-12 text-center">
                 <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight mb-4">
                     Client Words
@@ -90,7 +90,7 @@ export default function TestimonialsDisplay({ section }: TestimonialsDisplayProp
                         {[...visibleTestimonials, ...visibleTestimonials, ...visibleTestimonials, ...visibleTestimonials].map((item, idx) => (
                             <div
                                 key={`${item.id}-${idx}`}
-                                className="w-[350px] md:w-[450px] shrink-0 p-8 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800"
+                                className="w-[300px] sm:w-[350px] md:w-[450px] shrink-0 p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800"
                             >
                                 <div className="flex items-start gap-4 mb-4">
                                     <div className="w-12 h-12 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center overflow-hidden shrink-0 relative">

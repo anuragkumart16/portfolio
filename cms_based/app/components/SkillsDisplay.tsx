@@ -4,6 +4,7 @@ import { useAudience } from "../context/audience-context";
 import * as FaIcons from "react-icons/fa";
 import * as SiIcons from "react-icons/si";
 import { motion } from "framer-motion";
+import { Audience } from "../types";
 
 // Simplified icon matching for demo.
 const IconLibrary: any = { ...FaIcons, ...SiIcons };
@@ -13,7 +14,7 @@ interface SkillItem {
     name: string;
     iconName: string | null;
     isVisible: boolean;
-    audiences: any[]; // Prisma Enum array
+    audiences: Audience[]; // Prisma Enum array
     isCore: boolean;
 }
 
@@ -21,7 +22,7 @@ interface SkillCategory {
     id: string;
     title: string;
     isVisible: boolean;
-    audiences: any[];
+    audiences: Audience[];
     skills: SkillItem[];
 }
 
@@ -47,8 +48,8 @@ export default function SkillsDisplay({ section }: SkillsDisplayProps) {
     if (visibleCategories.length === 0) return null;
 
     return (
-        <section className="py-24 px-4 md:px-8 max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+        <section id="skills" className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
+            <div className="text-center mb-12 md:mb-16">
                 <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight mb-4">
                     Skills & Technologies
                 </h2>
@@ -57,7 +58,7 @@ export default function SkillsDisplay({ section }: SkillsDisplayProps) {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
                 {visibleCategories.map((cat, index) => {
                     // Filter Skills within Category
                     const visibleSkills = (cat.skills || []).filter(skill => {

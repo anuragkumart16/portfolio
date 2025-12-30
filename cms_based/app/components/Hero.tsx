@@ -20,7 +20,7 @@ export default async function Hero({ audience }: { audience: Audience }) {
     const hero = await getHeroData({ audience });
 
     return (
-        <section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden">
+        <section id="hero" className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden">
             <div className="absolute inset-0 w-full h-full opacity-50 dark:opacity-100">
                 <Threads
                     amplitude={1}
@@ -29,24 +29,24 @@ export default async function Hero({ audience }: { audience: Audience }) {
                 />
             </div>
 
-            <div className="relative z-10 py-20 px-4 md:px-8 max-w-4xl mx-auto flex flex-col gap-6">
+            <div className="relative z-10 py-12 md:py-20 px-4 md:px-8 max-w-4xl mx-auto flex flex-col gap-6">
                 {!hero ? (
                     <div className="space-y-4">
-                        <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-2xl">
+                        <p className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-2xl">
                             Building adaptive digital experiences.
                         </p>
-                        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
                             Hi, I&apos;m <span className="opacity-50">Anurag</span>
                         </h1>
                     </div>
                 ) : (
                     <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
                         {hero.subtitle && (
-                            <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-2xl">
+                            <p className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-2xl">
                                 {hero.subtitle}
                             </p>
                         )}
-                        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
                             {hero.title}
                         </h1>
                     </div>

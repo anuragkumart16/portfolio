@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../lib/utils";
 import { Skeleton } from "./ui/skeleton";
 import { useAudience } from "../context/audience-context";
-import { Audience } from "../types";
 
 interface StoryTab {
     id: string;
@@ -62,7 +61,8 @@ export default function Story({ story }: StoryProps) {
 
     // Calculate word count
     const wordCount = activeTab?.content.split(/\s+/).length || 0;
-    const isLongText = wordCount > 150;
+    const isDesktopLongText = wordCount > 150;
+    const isMobileLongText = wordCount > 50;
 
     // Process content for display
     const getTruncatedContent = (text: string, limit: number) => {
@@ -87,13 +87,82 @@ export default function Story({ story }: StoryProps) {
         return truncatedParagraphs.join('\n\n');
     };
 
-    const displayedContent = isLongText && !isExpanded
+    const desktopDisplayedContent = isDesktopLongText && !isExpanded
         ? getTruncatedContent(activeTab?.content || "", 150)
         : activeTab?.content;
 
+    const mobileDisplayedContent = isMobileLongText && !isExpanded
+        ? getTruncatedContent(activeTab?.content || "", 50)
+        : activeTab?.content;
+
     return (
-        <section className="py-24 px-4 md:px-8 max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
+        <section id="story" className="py-16 md:py-24 px-4 md:px-8 max-w-6xl mx-auto">
+            {/* Mobile View: Horizontal Scroll Tabs */}
+            <div className="md:hidden flex flex-col gap-8">
+                <div className="text-center mb-4">
+                    <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight">
+                        My Journey
+                    </h2>
+                    <p className="text-neutral-500 dark:text-neutral-400 mt-2 text-sm leading-relaxed max-w-xs mx-auto">
+                        Swipe through my professional chapters.
+                    </p>
+                </div>
+
+                <div className="flex overflow-x-auto pb-4 gap-4 snap-x snap-mandatory no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    {visibleTabs.map((tab) => {
+                        const isActive = validCurrentTabId === tab.id;
+                        return (
+                            <button
+                                key={tab.id}
+                                onClick={() => handleTabChange(tab.id)}
+                                className={cn(
+                                    "shrink-0 snap-center px-5 py-2 rounded-full text-sm font-semibold transition-all border",
+                                    isActive
+                                        ? "bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 border-neutral-900 dark:border-neutral-100"
+                                        : "bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800"
+                                )}
+                            >
+                                {tab.title}
+                            </button>
+                        )
+                    })}
+                </div>
+
+                <AnimatePresence mode="wait">
+                    {activeTab && (
+                        <motion.div
+                            key={activeTab.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="bg-white dark:bg-neutral-900/50 rounded-2xl p-6 border border-neutral-100 dark:border-neutral-800/50 shadow-sm relative overflow-hidden"
+                        >
+                            <div className="mb-4">
+                                <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">{activeTab.title}</h3>
+                                {activeTab.year && <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400">{activeTab.year}</span>}
+                            </div>
+                            <div className="prose prose-sm dark:prose-invert text-neutral-600 dark:text-neutral-300">
+                                {(mobileDisplayedContent || "").split('\n\n').map((paragraph, idx) => (
+                                    <p key={idx} className="mb-4 last:mb-0">{paragraph}</p>
+                                ))}
+                            </div>
+                            {isMobileLongText && (
+                                <button
+                                    onClick={() => setIsExpanded(!isExpanded)}
+                                    className="mt-4 text-sm font-semibold text-neutral-900 dark:text-neutral-100 hover:underline decoration-neutral-400 underline-offset-4"
+                                >
+                                    {isExpanded ? "Read Less" : "Read More"}
+                                </button>
+                            )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+
+
+            {/* Desktop View: Original Vertical Layout */}
+            <div className="hidden md:grid grid-cols-[1fr_2fr] gap-20">
 
                 {/* Left Column: Vertical Timeline Navigation */}
                 <div className="flex flex-col">
@@ -195,14 +264,14 @@ export default function Story({ story }: StoryProps) {
                                     <div className="absolute -right-20 -top-20 w-64 h-64 bg-neutral-100 dark:bg-neutral-800 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
                                     <div className="relative z-10 prose prose-lg dark:prose-invert max-w-none text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                                        {(displayedContent || "").split('\n\n').map((paragraph, idx) => (
+                                        {(desktopDisplayedContent || "").split('\n\n').map((paragraph, idx) => (
                                             <p key={idx} className="mb-6 last:mb-0">
                                                 {paragraph}
                                             </p>
                                         ))}
                                     </div>
 
-                                    {isLongText && (
+                                    {isDesktopLongText && (
                                         <button
                                             onClick={() => setIsExpanded(!isExpanded)}
                                             className="mt-4 text-sm font-semibold text-neutral-900 dark:text-neutral-100 hover:underline decoration-neutral-400 underline-offset-4"
@@ -238,7 +307,6 @@ export default function Story({ story }: StoryProps) {
                         )}
                     </AnimatePresence>
                 </div>
-
             </div>
         </section>
     );
@@ -246,7 +314,7 @@ export default function Story({ story }: StoryProps) {
 
 export function StorySkeleton() {
     return (
-        <section className="py-24 px-4 md:px-8 max-w-6xl mx-auto">
+        <section id="story" className="py-24 px-4 md:px-8 max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12">
                 <div className="space-y-8">
                     <Skeleton className="h-12 w-48" />
