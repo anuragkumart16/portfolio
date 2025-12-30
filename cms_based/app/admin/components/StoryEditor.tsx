@@ -16,9 +16,18 @@ export default async function StoryEditor() {
     const story = await getStoryData();
 
     // If no story exists, we pass null, form should handle defaults
+    // Sanitize data to match expected types (convert nulls to undefined)
+    const sanitizedStory = story ? {
+        ...story,
+        tabs: story.tabs.map(tab => ({
+            ...tab,
+            year: tab.year || undefined
+        }))
+    } : null;
+
     return (
         <div>
-            <StoryForm initialData={story} />
+            <StoryForm initialData={sanitizedStory} />
         </div>
     );
 }
