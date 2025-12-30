@@ -8,5 +8,5 @@ export default async function ContactEditor() {
         take: 50
     });
 
-    return <ContactSettingsForm initialData={settings} submissions={submissions} />;
+    return <ContactSettingsForm initialData={settings as any} submissions={submissions} />;
 }
