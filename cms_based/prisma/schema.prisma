@@ -34,7 +34,9 @@ type StoryTab {
   id        String
   title     String
   content   String
-  isVisible Boolean @default(true)
+  isVisible Boolean    @default(true)
+  audiences Audience[]
+  year      String?
 }
 
 model Skill {

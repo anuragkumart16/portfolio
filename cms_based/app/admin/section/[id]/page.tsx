@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import HeroEditor from "../../components/HeroEditor";
-// import StoryEditor from "../../components/StoryEditor"; 
+import StoryEditor from "../../components/StoryEditor";
 // ... others
 
 export default async function SectionPage({
@@ -41,7 +41,8 @@ export default async function SectionPage({
             <div className="bg-white dark:bg-neutral-950 rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm">
                 {/* Render specific editor based on ID */}
                 {id === 'hero' && <HeroEditor />}
-                {id !== 'hero' && (
+                {id === 'story' && <StoryEditor />}
+                {(id !== 'hero' && id !== 'story') && (
                     <p className="text-neutral-500 italic">Editor for {name} is under construction.</p>
                 )}
             </div>

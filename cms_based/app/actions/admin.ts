@@ -64,3 +64,41 @@ export async function createHero(formData: FormData) {
         return { success: false, message: "Failed to create hero" };
     }
 }
+
+export async function updateStory(prevState: any, formData: FormData) {
+    const isVisible = formData.get("isVisible") === "on";
+    const tabsJson = formData.get("tabs") as string;
+
+    let tabs = [];
+    try {
+        tabs = JSON.parse(tabsJson);
+    } catch (e) {
+        console.error("Failed to parse tabs JSON", e);
+        return { success: false, message: "Invalid tabs data" };
+    }
+
+    try {
+        // Upsert logic: find the first one, if exists update, else create
+        // MongoDB allows upsert with where. But for singletons without a known ID, 
+        // we can do findFirst -> update or create.
+
+        const existing = await prisma.story.findFirst();
+
+        if (existing) {
+            await prisma.story.update({
+                where: { id: existing.id },
+                data: { isVisible, tabs }
+            });
+        } else {
+            await prisma.story.create({
+                data: { isVisible, tabs }
+            });
+        }
+
+        revalidatePath("/");
+        return { success: true, message: "Story updated successfully" };
+    } catch (error) {
+        console.error("Update story error:", error);
+        return { success: false, message: "Failed to update story" };
+    }
+}

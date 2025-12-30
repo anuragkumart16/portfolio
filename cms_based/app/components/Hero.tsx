@@ -3,7 +3,7 @@ import { Skeleton } from "./ui/skeleton";
 import Threads from "./bits/Threads";
 import { Audience } from "../types";
 
-async function getHeroData({audience}: {audience: Audience}) {
+async function getHeroData({ audience }: { audience: Audience }) {
     console.log(audience);
     try {
         const hero = await prisma.hero.findFirst({
@@ -16,8 +16,8 @@ async function getHeroData({audience}: {audience: Audience}) {
     }
 }
 
-export default async function Hero({audience}: {audience: Audience}) {
-    const hero = await getHeroData({audience});
+export default async function Hero({ audience }: { audience: Audience }) {
+    const hero = await getHeroData({ audience });
 
     return (
         <section className="relative w-full min-h-[100vh] flex flex-col justify-center overflow-hidden">

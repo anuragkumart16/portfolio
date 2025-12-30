@@ -1,6 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import { Skeleton } from "./ui/skeleton";
 import { cn } from "@/app/lib/utils";
+import SkillsVisualization from "./SkillsVisualization";
 
 async function getSkillsData() {
     try {
@@ -30,43 +31,27 @@ export default async function Skills() {
     }, {} as Record<string, typeof skills>);
 
     return (
-        <section className="py-20 px-4 md:px-8 max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-neutral-900 dark:text-neutral-100">
-                Skills & Technologies
-            </h2>
+        <section className="py-20 relative overflow-hidden bg-neutral-50 dark:bg-neutral-950">
+            <div className="max-w-7xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-10">
+                    <h2 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-4">
+                        Skills & Technologies
+                    </h2>
+                    <p className="text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto">
+                        A dynamic overview of the tools that power my work.
+                    </p>
+                </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {Object.entries(groupedSkills).map(([category, categorySkills]) => (
-                    <div key={category} className="space-y-4">
-                        <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300 border-b border-neutral-200 dark:border-neutral-800 pb-2">
-                            {category}
-                        </h3>
-                        <ul className="space-y-3">
-                            {categorySkills.map((skill) => (
-                                <li key={skill.id} className="flex flex-col">
-                                    <div className="flex items-center gap-2">
-                                        <span className={cn(
-                                            "font-medium",
-                                            skill.isCore ? "text-neutral-900 dark:text-neutral-100" : "text-neutral-600 dark:text-neutral-400"
-                                        )}>
-                                            {skill.name}
-                                        </span>
-                                        {skill.isCore && (
-                                            <span className="px-1.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[10px] uppercase font-bold text-neutral-500 tracking-wider">
-                                                Core
-                                            </span>
-                                        )}
-                                    </div>
-                                    {skill.description && (
-                                        <span className="text-sm text-neutral-500 dark:text-neutral-500 line-clamp-1">
-                                            {skill.description}
-                                        </span>
-                                    )}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
+                {/* 
+                   We render the client visualization.
+                   Note: On mobile, the orbit might be too big. The component uses large dimensions.
+                   We can scale it via CSS zoom or transform scaling for smaller screens 
+                   if the component itself isn't fully fluid.
+                   Or simply let the component handle its responsiveness (it scales radius?).
+                */}
+                <div className="scale-[0.6] md:scale-100 origin-center transition-transform duration-500 -my-20 md:my-0">
+                    <SkillsVisualization skills={skills} />
+                </div>
             </div>
         </section>
     );
