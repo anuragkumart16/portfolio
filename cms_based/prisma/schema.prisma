@@ -63,7 +63,6 @@ type SkillItem {
   isCore    Boolean    @default(false)
 }
 
-// Replaced legacy Project model
 model ProjectsSection {
   id        String        @id @default(auto()) @map("_id") @db.ObjectId
   isVisible Boolean       @default(true)
@@ -76,12 +75,30 @@ type ProjectItem {
   title       String
   description String
   images      String[]
-  techStack   String[] // e.g. ["Next.js", "Prisma"]
+  techStack   String[] 
   liveUrl     String?
   repoUrl     String?
   audiences   Audience[]
   isVisible   Boolean    @default(true)
   useIframe   Boolean    @default(false)
+}
+
+model TestimonialsSection {
+  id            String            @id @default(auto()) @map("_id") @db.ObjectId
+  isVisible     Boolean           @default(true)
+  onlyFreelance Boolean           @default(false)
+  testimonials  TestimonialItem[]
+  updatedAt     DateTime          @updatedAt
+}
+
+type TestimonialItem {
+  id        String
+  name      String
+  role      String
+  company   String?
+  content   String
+  avatarUrl String?
+  isVisible Boolean @default(true)
 }
 
 model Testimonial {
@@ -95,10 +112,21 @@ model Testimonial {
   updatedAt  DateTime @updatedAt
 }
 
+model ContactSection {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  isVisible     Boolean  @default(true)
+  title         String   @default("Get in touch")
+  subtitle      String   @default("Have a project in mind or just want to say hi?")
+  receiverEmail String   @default("anurag.tiwari@example.com")
+  updatedAt     DateTime @updatedAt
+}
+
 model ContactSubmission {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String?
   email     String
-  message   String?
+  message   String
+  status    String   @default("unread") // unread, read, archived
   meta      Json?
   createdAt DateTime @default(now())
 }

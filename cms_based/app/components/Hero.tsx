@@ -20,7 +20,7 @@ export default async function Hero({ audience }: { audience: Audience }) {
     const hero = await getHeroData({ audience });
 
     return (
-        <section className="relative w-full min-h-[100vh] flex flex-col justify-center overflow-hidden">
+        <section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden">
             <div className="absolute inset-0 w-full h-full opacity-50 dark:opacity-100">
                 <Threads
                     amplitude={1}
@@ -36,7 +36,7 @@ export default async function Hero({ audience }: { audience: Audience }) {
                             Building adaptive digital experiences.
                         </p>
                         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
-                            Hi, I'm <span className="opacity-50">Anurag</span>
+                            Hi, I&apos;m <span className="opacity-50">Anurag</span>
                         </h1>
                     </div>
                 ) : (

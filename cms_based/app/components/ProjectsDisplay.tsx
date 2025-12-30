@@ -65,7 +65,7 @@ export default function ProjectsDisplay({ section }: ProjectsDisplayProps) {
                         >
                             {/* Order check: Alternate layout for visual interest if index is odd */}
                             <div className={`relative rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:scale-[1.02] ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                                <div className="aspect-[16/10] bg-neutral-100 dark:bg-neutral-900 relative">
+                                <div className="aspect-16/10 bg-neutral-100 dark:bg-neutral-900 relative">
                                     {project.useIframe && project.liveUrl ? (
                                         <div className="absolute inset-0 w-[400%] h-[400%] origin-top-left scale-[0.25] bg-white">
                                             <iframe
@@ -85,7 +85,7 @@ export default function ProjectsDisplay({ section }: ProjectsDisplayProps) {
                                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                                             />
                                             {/* Overlay Gradient only for Image */}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                                            <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                                         </>
                                     ) : (
                                         <div className="absolute inset-0 flex items-center justify-center text-neutral-400 dark:text-neutral-600">

@@ -8,6 +8,7 @@ const sections = [
     { id: "skills", name: "Skills", status: "Active", description: "Technological capabilities" },
     { id: "projects", name: "Projects", status: "Active", description: "Portfolio work items" },
     { id: "testimonials", name: "Testimonials", status: "Active", description: "Client reviews (Freelance only)" },
+    { id: "contact", name: "Contact", status: "Active", description: "Contact form settings" }
 ];
 
 export default function AdminDashboard() {

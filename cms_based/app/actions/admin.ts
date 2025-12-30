@@ -170,3 +170,38 @@ export async function updateProjects(prevState: any, formData: FormData) {
         return { success: false, message: "Failed to update projects" };
     }
 }
+
+export async function updateTestimonials(prevState: any, formData: FormData) {
+    const isVisible = formData.get("isVisible") === "on";
+    const onlyFreelance = formData.get("onlyFreelance") === "on";
+    const testimonialsJson = formData.get("testimonials") as string;
+
+    let testimonials = [];
+    try {
+        testimonials = JSON.parse(testimonialsJson);
+    } catch (e) {
+        console.error("Failed to parse testimonials JSON", e);
+        return { success: false, message: "Invalid testimonials data" };
+    }
+
+    try {
+        const existing = await prisma.testimonialsSection.findFirst();
+
+        if (existing) {
+            await prisma.testimonialsSection.update({
+                where: { id: existing.id },
+                data: { isVisible, onlyFreelance, testimonials }
+            });
+        } else {
+            await prisma.testimonialsSection.create({
+                data: { isVisible, onlyFreelance, testimonials }
+            });
+        }
+
+        revalidatePath("/");
+        return { success: true, message: "Testimonials updated successfully" };
+    } catch (error) {
+        console.error("Update testimonials error:", error);
+        return { success: false, message: "Failed to update testimonials" };
+    }
+}

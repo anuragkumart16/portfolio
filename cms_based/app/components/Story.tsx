@@ -112,7 +112,7 @@ export default function Story({ story }: StoryProps) {
 
                         {/* Animated Progress Line */}
                         <motion.div
-                            className="absolute left-[29px] top-4 w-[2px] bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 origin-top"
+                            className="absolute left-[29px] top-4 w-[2px] bg-linear-to-b from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 origin-top"
                             initial={{ height: "0%" }}
                             animate={{
                                 height: `${(tabIndex / (visibleTabs.length - 1 || 1)) * 100}%`
@@ -133,7 +133,7 @@ export default function Story({ story }: StoryProps) {
                                 >
                                     {/* Node / Bead */}
                                     <div className={cn(
-                                        "relative z-10 flex-shrink-0 w-3 h-3 mt-2 rounded-full border-2 transition-all duration-300",
+                                        "relative z-10 shrink-0 w-3 h-3 mt-2 rounded-full border-2 transition-all duration-300",
                                         isActive
                                             ? "border-neutral-900 dark:border-neutral-100 bg-neutral-900 dark:bg-neutral-100 scale-125 shadow-[0_0_0_4px_rgba(0,0,0,0.05)] dark:shadow-[0_0_0_4px_rgba(255,255,255,0.05)]"
                                             : isPast
@@ -190,7 +190,7 @@ export default function Story({ story }: StoryProps) {
                                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                                 className="w-full flex flex-col"
                             >
-                                <div className="bg-white dark:bg-neutral-900/50 rounded-2xl p-8 md:p-12 border border-neutral-100 dark:border-neutral-800/50 shadow-sm relative overflow-hidden backdrop-blur-xl flex-grow">
+                                <div className="bg-white dark:bg-neutral-900/50 rounded-2xl p-8 md:p-12 border border-neutral-100 dark:border-neutral-800/50 shadow-sm relative overflow-hidden backdrop-blur-xl grow">
                                     {/* Subtle background decoration */}
                                     <div className="absolute -right-20 -top-20 w-64 h-64 bg-neutral-100 dark:bg-neutral-800 rounded-full blur-3xl opacity-50 pointer-events-none" />
 

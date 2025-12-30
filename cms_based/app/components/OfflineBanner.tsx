@@ -7,8 +7,10 @@ export default function OfflineBanner() {
     const [isOffline, setIsOffline] = useState(false);
 
     useEffect(() => {
-        // Initial check
-        setIsOffline(!navigator.onLine);
+        // Initial check to sync state, only update if different to avoid unnecessary render
+        if (navigator.onLine === isOffline) {
+            setIsOffline(!navigator.onLine);
+        }
 
         const handleOnline = () => setIsOffline(false);
         const handleOffline = () => setIsOffline(true);

@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { useMemo } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/app/lib/utils";
 
@@ -36,7 +36,7 @@ export default function SkillsVisualization({ skills }: SkillsVisualizationProps
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neutral-200/30 dark:bg-neutral-900/30 rounded-full blur-3xl -z-10" />
 
             {/* Center Image */}
-            <div className="relative z-10 w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white/50 dark:border-neutral-800/50 shadow-2xl backdrop-blur-sm bg-neutral-100 dark:bg-neutral-900 overflow-hidden flex-shrink-0">
+            <div className="relative z-10 w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white/50 dark:border-neutral-800/50 shadow-2xl backdrop-blur-sm bg-neutral-100 dark:bg-neutral-900 overflow-hidden shrink-0">
                 <Image
                     src="/image.png"
                     alt="Profile"
@@ -87,7 +87,7 @@ interface OrbitRingProps {
     className?: string;
 }
 
-function OrbitRing({ skills, radius, radiusMd, duration, direction, className }: OrbitRingProps) {
+function OrbitRing({ skills, radiusMd, duration, direction, className }: OrbitRingProps) {
     // We need to handle responsive radius. 
     // Pure CSS orbit is easier for smoothness, but positioning items requires calc.
     // Let's use Framer Motion for the rotation of a container.

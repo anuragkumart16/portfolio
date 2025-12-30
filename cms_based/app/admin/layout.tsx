@@ -11,7 +11,7 @@ export default function AdminLayout({
             {/* Sidebar */}
             <aside className="w-64 bg-white dark:bg-neutral-950 border-r border-neutral-200 dark:border-neutral-800 hidden md:flex flex-col">
                 <div className="p-6 border-b border-neutral-200 dark:border-neutral-800">
-                    <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400">
+                    <h1 className="text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-neutral-800 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400">
                         Portfolio Admin
                     </h1>
                 </div>

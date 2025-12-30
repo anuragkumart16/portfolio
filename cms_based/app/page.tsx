@@ -29,7 +29,7 @@ export default async function Home({
     <main className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-sans">
       {/* Sync URL audience to Context for Client Components */}
       <AudienceSyncer audience={audience} />
-      <Navbar audience={audience}/>
+      <Navbar audience={audience} />
       <Suspense fallback={<HeroSkeleton />}>
         <Hero audience={audience} />
       </Suspense>
@@ -48,7 +48,7 @@ export default async function Home({
         <Projects audience={audience} />
       </Suspense>
       <Suspense fallback={<TestimonialsSkeleton />}>
-        <Testimonials audience={audience} />
+        <Testimonials />
       </Suspense>
       <Contact />
       <Footer />

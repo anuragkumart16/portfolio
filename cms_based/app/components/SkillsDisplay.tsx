@@ -3,7 +3,6 @@
 import { useAudience } from "../context/audience-context";
 import * as FaIcons from "react-icons/fa";
 import * as SiIcons from "react-icons/si";
-import { cn } from "@/app/lib/utils";
 import { motion } from "framer-motion";
 
 // Simplified icon matching for demo.
@@ -106,7 +105,7 @@ export default function SkillsDisplay({ section }: SkillsDisplayProps) {
                                             </span>
 
                                             {/* Glow Effect */}
-                                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-neutral-100/0 via-neutral-100/0 to-neutral-100/50 dark:from-neutral-800/0 dark:via-neutral-800/0 dark:to-neutral-700/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                                            <div className="absolute inset-0 rounded-2xl bg-linear-to-tr from-neutral-100/0 via-neutral-100/0 to-neutral-100/50 dark:from-neutral-800/0 dark:via-neutral-800/0 dark:to-neutral-700/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                                         </motion.div>
                                     );
                                 })}

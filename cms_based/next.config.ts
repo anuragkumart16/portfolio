@@ -13,4 +13,4 @@ const nextConfig: NextConfig = {
 
 export default nextConfig;
 
-// Trigger server restart to load new Prisma Client types
+// Trigger server restart to load new Prisma Client types (Contact - Reload 2)

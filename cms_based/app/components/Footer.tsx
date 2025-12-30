@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="py-8 border-t border-neutral-200 dark:border-neutral-800 mt-20">
+        <footer className="py-8 bg-white dark:bg-black border-t border-neutral-200 dark:border-neutral-800 mt-0">
             <div className="max-w-4xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
                 <p>
                     © {new Date().getFullYear()} Anurag. All rights reserved.

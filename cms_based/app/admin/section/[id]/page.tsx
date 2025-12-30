@@ -5,6 +5,8 @@ import HeroEditor from "../../components/HeroEditor";
 import StoryEditor from "../../components/StoryEditor";
 import SkillsEditor from "../../components/SkillsEditor";
 import ProjectsEditor from "../../components/ProjectsEditor";
+import TestimonialsEditor from "../../components/TestimonialsEditor";
+import ContactEditor from "../../components/ContactEditor";
 // ... others
 
 export default async function SectionPage({
@@ -20,6 +22,7 @@ export default async function SectionPage({
         skills: "Skills",
         projects: "Projects",
         testimonials: "Testimonials",
+        contact: "Contact",
     };
 
     const name = sectionNames[id];
@@ -46,7 +49,9 @@ export default async function SectionPage({
                 {id === 'story' && <StoryEditor />}
                 {id === 'skills' && <SkillsEditor />}
                 {id === 'projects' && <ProjectsEditor />}
-                {(id !== 'hero' && id !== 'story' && id !== 'skills' && id !== 'projects') && (
+                {id === 'testimonials' && <TestimonialsEditor />}
+                {id === 'contact' && <ContactEditor />}
+                {(id !== 'hero' && id !== 'story' && id !== 'skills' && id !== 'projects' && id !== 'testimonials' && id !== 'contact') && (
                     <p className="text-neutral-500 italic">Editor for {name} is under construction.</p>
                 )}
             </div>
