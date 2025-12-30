@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -27,17 +28,28 @@ function Navbar({ audience }: { audience: string }) {
                     <motion.div
                         initial={{ y: -100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        className='backdrop-blur-md border border-neutral-200 dark:border-zinc-800 rounded-full py-3 px-8 flex flex-row gap-8 bg-white/80 dark:bg-zinc-950/80 shadow-lg mt-4'
+                        className='backdrop-blur-md border border-neutral-200 dark:border-zinc-800 rounded-full py-2 px-6 flex flex-row items-center gap-6 bg-white/80 dark:bg-zinc-950/80 shadow-lg mt-4'
                     >
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
+                        <Link href="#hero" className="relative w-8 h-8 rounded-full overflow-hidden border border-neutral-200 dark:border-neutral-800 shrink-0">
+                            <Image
+                                src="/image.png"
+                                alt="Profile"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </Link>
+                        <div className="flex flex-row gap-6">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
                     </motion.div>
                 </div>
             </div>
@@ -47,9 +59,15 @@ function Navbar({ audience }: { audience: string }) {
                 <div className='flex items-center justify-between p-4'>
                     <Link
                         href="#hero"
-                        className="text-xl font-bold text-neutral-900 dark:text-white backdrop-blur-md bg-white/30 dark:bg-black/30 px-3 py-1 rounded-lg border border-neutral-200/50 dark:border-neutral-800/50"
+                        className="relative w-10 h-10 rounded-full overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-md"
                     >
-                        AK
+                        <Image
+                            src="/image.png"
+                            alt="Profile"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
                     </Link>
 
                     <button
